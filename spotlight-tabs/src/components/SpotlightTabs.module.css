@@ -1,0 +1,43 @@
+.page {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--backdrop);
+}
+
+.stage {
+  position: absolute;
+  left: calc(50% - var(--stage) / 2);
+  top: calc(50% - var(--stage) / 2);
+  width: var(--stage);
+  height: var(--stage);
+  /* the same backdrop again, so the stage's own pixels are exactly the design's */
+  background: var(--backdrop);
+}
+
+.scene {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--stage);
+  height: var(--stage);
+  transform-origin: calc(540 * var(--u)) calc(540 * var(--u));
+  transform: scale(var(--scene-scale));
+  visibility: hidden;
+}
+
+.scene[data-ready] {
+  visibility: visible;
+}
+
+/* The grain runs on past the stage to the window's edges; its 200-px tiles stay lined up with the stage. */
+.grain {
+  position: absolute;
+  inset: calc(-2000 * var(--u));
+  background-image: var(--grain);
+  background-size: var(--grain-tile) var(--grain-tile);
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}

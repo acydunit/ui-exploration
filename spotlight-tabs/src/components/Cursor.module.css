@@ -1,0 +1,23 @@
+.cursor {
+  /* Written every frame (design px): the drawing's top-left corner; its press (scale) is written directly. */
+  --x: 760;
+  --y: 700;
+
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  width: var(--cursor-w);
+  height: var(--cursor-h);
+  pointer-events: none;
+  filter: var(--cursor-shadow);
+}
+
+.hand {
+  fill: var(--cursor-fill);
+  stroke: var(--cursor-ink);
+}
+
+.creases {
+  fill: none;
+  stroke: var(--cursor-ink);
+}

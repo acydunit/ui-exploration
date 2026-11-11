@@ -1,0 +1,165 @@
+.bar {
+  /* Set once the tabs are measured (design px): the bar's left edge on the stage and its width. */
+  --x: 0;
+  --w: 0;
+
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: var(--bar-y);
+  width: calc(var(--w) * var(--u));
+  height: var(--bar-h);
+  border-radius: var(--bar-radius);
+  background: var(--bar-glass);
+  box-shadow: var(--bar-shadow);
+}
+
+/* A 1-px ring painted with a gradient: the background shows only in the padding, the content box is masked out. */
+.rim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--rim-width);
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.barRim {
+  background: var(--bar-rim);
+}
+
+.rimlight {
+  /* Written every frame (design px, along the bar); its opacity is written directly. */
+  --x: 0;
+  --w: 0;
+
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: var(--rimlight-y);
+  width: calc(var(--w) * var(--u));
+  height: var(--rimlight-h);
+  border-radius: var(--rimlight-radius);
+  pointer-events: none;
+  background: var(--rimlight);
+}
+
+.pill {
+  /* Written every frame (design px, along the bar). */
+  --x: 0;
+  --w: 0;
+
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: var(--pill-y);
+  width: calc(var(--w) * var(--u));
+  height: var(--pill-h);
+  border-radius: var(--pill-radius);
+}
+
+.active {
+  background: var(--active-glass);
+  box-shadow: var(--active-shadow);
+}
+
+/* a spark of light on the active pill's top edge */
+.active::before {
+  content: "";
+  position: absolute;
+  left: var(--active-spark-inset);
+  right: var(--active-spark-inset);
+  top: var(--rimlight-y);
+  height: var(--rimlight-h);
+  border-radius: var(--rimlight-radius);
+  background: var(--active-spark);
+  filter: blur(var(--active-spark-blur));
+}
+
+.activeRim {
+  background: var(--active-rim);
+}
+
+/* the light that falls into the active pill from above (its colour is written every frame) */
+.caustic {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border-radius: var(--pill-radius);
+  pointer-events: none;
+}
+
+.hover {
+  background: var(--hover-glass);
+  opacity: 0;
+}
+
+.hoverRim {
+  background: var(--hover-rim);
+}
+
+.tab {
+  /* Set once the tabs are measured (design px, along the bar); the colour is written every frame. */
+  --x: 0;
+  --w: 0;
+
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: 0;
+  width: calc(var(--w) * var(--u));
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: var(--tab-gap);
+  padding: 0 var(--tab-pad);
+  font-size: var(--tab-size);
+  font-weight: var(--tab-weight);
+  letter-spacing: var(--tab-tracking);
+  white-space: nowrap;
+  color: var(--tab-ink);
+}
+
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  flex: none;
+}
+
+.tab:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: var(--focus-inset);
+  border-radius: var(--focus-radius);
+  outline: var(--focus-width) solid var(--focus);
+  pointer-events: none;
+}
+
+/* What the controller measures: the tabs at the design's own size (px, not --u), never shown. */
+.probe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1080px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.probeTab {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 21px;
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+}
+
+.probeIcon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
