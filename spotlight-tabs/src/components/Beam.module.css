@@ -1,0 +1,30 @@
+.beam {
+  /* Written every frame (design px): the canvas's left edge; its opacity and tilt are written directly. */
+  --x: 0;
+
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: var(--beam-y);
+  width: var(--beam-w);
+  height: var(--beam-h);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(var(--beam-blur));
+  transform-origin: 50% 100%;
+}
+
+.floor {
+  /* Written every frame (design px); its colour is written directly. */
+  --x: 0;
+  --w: 0;
+
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: var(--floor-y);
+  width: calc(var(--w) * var(--u));
+  height: var(--floor-h);
+  border-radius: 50%;
+  filter: blur(var(--floor-blur));
+  pointer-events: none;
+  mix-blend-mode: screen;
+}

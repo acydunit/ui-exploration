@@ -1,0 +1,108 @@
+:root {
+  /* Scale: one design px of the 1080 × 1080 stage. The stage fills the window's shorter side. */
+  --u: calc(min(100vw, 100svh) / 1080);
+  --stage: calc(1080 * var(--u));
+  /* The scene (bar, beam, floor, cursor) is drawn at 1.45× around the stage's centre. */
+  --scene-scale: 1.45;
+
+  /* Type */
+  --font-sans: "Geist", ui-sans-serif, sans-serif;
+  --tab-size: calc(15.5 * var(--u));
+  --tab-weight: 500;
+  --tab-tracking: -0.005em;
+  --tab-ink: #5c5c64;
+
+  /* Page and backdrop: a dim light just below the stage's centre, running on to the window's edges */
+  --page: #040405;
+  --backdrop: radial-gradient(
+    calc(648 * var(--u)) calc(486 * var(--u)) at 50% calc(50% + 21.6 * var(--u)),
+    #121214,
+    #08080a 60%,
+    var(--page)
+  );
+
+  /* Film grain over everything: SVG fractal noise, a 200-px tile, overlay at 9% */
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --grain-tile: calc(200 * var(--u));
+  --grain-opacity: 0.09;
+
+  /* The bar: frosted glass with a fine rim, tinted mint on the left and lilac on the right */
+  --bar-y: calc(510 * var(--u));
+  --bar-h: calc(62 * var(--u));
+  --bar-radius: calc(31 * var(--u));
+  --bar-glass: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.015) 50%,
+    rgba(255, 255, 255, 0.03)
+  );
+  --bar-shadow: inset 0 var(--u) 0 rgba(255, 255, 255, 0.08),
+    0 calc(30 * var(--u)) calc(60 * var(--u)) calc(-20 * var(--u)) rgba(0, 0, 0, 0.95),
+    0 0 0 var(--u) rgba(0, 0, 0, 0.6);
+  --bar-rim: linear-gradient(
+    100deg,
+    rgba(150, 255, 222, 0.32),
+    rgba(255, 255, 255, 0.1) 18%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(180, 170, 255, 0.16)
+  );
+  --rim-width: var(--u);
+
+  /* The light line on the bar's top rim, under the beam */
+  --rimlight-y: calc(-1 * var(--u));
+  --rimlight-h: calc(2 * var(--u));
+  --rimlight-radius: calc(2 * var(--u));
+  --rimlight: radial-gradient(closest-side, rgba(225, 255, 246, 0.9), rgba(225, 255, 246, 0));
+
+  /* Pills: the raised glass one on the active tab, and the faint one under the pointer */
+  --pill-y: calc(7 * var(--u));
+  --pill-h: calc(48 * var(--u));
+  --pill-radius: calc(24 * var(--u));
+  --active-glass: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.13),
+    rgba(255, 255, 255, 0.05) 55%,
+    rgba(255, 255, 255, 0.07)
+  );
+  --active-shadow: inset 0 var(--u) 0 rgba(255, 255, 255, 0.22),
+    0 calc(8 * var(--u)) calc(20 * var(--u)) calc(-8 * var(--u)) rgba(0, 0, 0, 0.9),
+    0 0 calc(24 * var(--u)) calc(-6 * var(--u)) rgba(190, 255, 236, 0.25);
+  --active-rim: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.06) 55%,
+    rgba(170, 255, 230, 0.25)
+  );
+  --active-spark: radial-gradient(closest-side, rgba(235, 255, 250, 0.95), transparent);
+  --active-spark-inset: 18%;
+  --active-spark-blur: calc(0.5 * var(--u));
+  --hover-glass: rgba(255, 255, 255, 0.04);
+  --hover-rim: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02));
+
+  /* Tabs */
+  --tab-pad: calc(21 * var(--u));
+  --tab-gap: calc(10 * var(--u));
+  --icon-size: calc(18 * var(--u));
+
+  /* The beam (a 360 × 400 canvas whose bottom edge sits 8 px inside the bar) and the light pool on the floor */
+  --beam-y: calc(118 * var(--u));
+  --beam-w: calc(360 * var(--u));
+  --beam-h: calc(400 * var(--u));
+  --beam-blur: calc(4 * var(--u));
+  --floor-y: calc(556 * var(--u));
+  --floor-h: calc(60 * var(--u));
+  --floor-blur: calc(18 * var(--u));
+
+  /* The demo cursor: a white hand with a dark outline */
+  --cursor-fill: #fff;
+  --cursor-ink: #111;
+  --cursor-w: calc(22 * var(--u));
+  --cursor-h: calc(24 * var(--u));
+  --cursor-shadow: drop-shadow(0 calc(2 * var(--u)) calc(3 * var(--u)) rgba(0, 0, 0, 0.6));
+
+  /* Keyboard focus */
+  --focus: rgba(255, 255, 255, 0.55);
+  --focus-width: calc(2 * var(--u));
+  --focus-inset: calc(3 * var(--u)) calc(-4 * var(--u));
+  --focus-radius: calc(28 * var(--u));
+}
